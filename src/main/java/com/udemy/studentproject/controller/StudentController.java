@@ -7,8 +7,17 @@ import com.udemy.studentproject.bean.Student;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+
 
 
 
@@ -48,7 +57,7 @@ public class StudentController {
     //{id}-URI tempalte variable
     //http://localhost:8080/students/1
     @GetMapping("students/{id}") 
-    //to bind template  variable with the method argument we need to use  @path variable
+    //to bind  URI template  variable with the method argument we need to use  @path variable
     
     public Student studentPathVariable(@PathVariable("id") int studentId){
     
@@ -69,7 +78,47 @@ public class StudentController {
     return new Student(studentId, firstName, lastName);              
                                  
  }
+
+
+ //Spring boot rest api with Request param(map to query parameters)
+ //(to extract query paramater value in request url)
  
+//http://localhost:8080/students/query?id=1&firstName=priyanka&lastName=Reddy
+
+@GetMapping("students/query")
+
+public Student studentRequestVariable(@RequestParam int id,
+                                      @RequestParam  String  firstName,
+                                      @RequestParam  String lastName)
+{
+    return new Student(id, firstName, lastName);
+
+}
+// spring boot Rest API that handles http  post request
+//client will send request  in request body
+
+//@POST MAPPING AND @RequestMapping
+
+@PostMapping("student/create")  //to map incoming post request  
+//http://localhost:8080/student/create
+//RequestBody annotation internally uses spring provided http msg  converter  to convert json to java object
+@ResponseStatus(HttpStatus.CREATED)
+// to send response in the  status //it will return 201 created as response 
+public Student createStudent(@RequestBody Student student)
+{
+    System.out.println(student.getId());
+    System.out.println(student.getFirstName());
+    System.out.println(student.getLastName());
+
+    return student;  //it will return the  student 
+
+}
+
+
+
+
+
+
     }
 
 
