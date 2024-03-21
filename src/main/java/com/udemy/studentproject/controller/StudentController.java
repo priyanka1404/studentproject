@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PutMapping;
+
 
 
 
@@ -99,10 +101,13 @@ public Student studentRequestVariable(@RequestParam int id,
 
 //@POST MAPPING AND @RequestMapping
 
+
+//post to create new resource 
 @PostMapping("student/create")  //to map incoming post request  
 //http://localhost:8080/student/create
 //RequestBody annotation internally uses spring provided http msg  converter  to convert json to java object
 @ResponseStatus(HttpStatus.CREATED)
+
 // to send response in the  status //it will return 201 created as response 
 public Student createStudent(@RequestBody Student student)
 {
@@ -117,6 +122,20 @@ public Student createStudent(@RequestBody Student student)
 
 
 
+//spring boot Rest API that handles http  put  request
+//client will send request  in request body
+// update the existing resource 
+
+@PutMapping("students/{id}/update")
+//http://localhost:8080/students/{id}/update
+public Student updateStudent(@pathVariable String id,@RequestBody Student student )
+{
+    System.out.println(student.getFirstName());
+    System.out.println(student.getLastName());
+    return  student;
+//if status is successfull by default it will create 
+
+}
 
 
     }
