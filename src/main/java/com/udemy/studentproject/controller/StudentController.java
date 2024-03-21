@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -128,12 +129,24 @@ public Student createStudent(@RequestBody Student student)
 
 @PutMapping("students/{id}/update")
 //http://localhost:8080/students/{id}/update
-public Student updateStudent(@RequestBody Student student,@PathVariable("id") int studentid )
+public Student updateStudent(@RequestBody Student student,@PathVariable("id") int studentId )
 {
     System.out.println(student.getFirstName());
     System.out.println(student.getLastName());
     return  student;
 //if status is successfull by default it will create 
+
+}
+
+//spring boot Rest API that handles http  delete   request
+@DeleteMapping("students/{id}/delete")
+ //http://localhost:8080/students/{id}/delete
+public String deleteStudent(@PathVariable("id") int studentId){
+
+    System.out.println(studentId);
+    
+    return "student deleted successfully";
+
 
 }
 
