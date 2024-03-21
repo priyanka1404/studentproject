@@ -128,7 +128,7 @@ public Student createStudent(@RequestBody Student student)
 
 @PutMapping("students/{id}/update")
 //http://localhost:8080/students/{id}/update
-public Student updateStudent(@pathVariable String id,@RequestBody Student student )
+public Student updateStudent(@RequestBody Student student,@PathVariable("id") int studentid )
 {
     System.out.println(student.getFirstName());
     System.out.println(student.getLastName());
