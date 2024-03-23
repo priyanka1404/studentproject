@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
@@ -21,7 +22,11 @@ import com.udemy.studentproject.bean.Student;
 // to manage response and body we have to use response entity
 
 
+
+//to use base url in class level ,instead of repeating url for all res api
+//we have to use RequestMapping ANNOTATION TO DEFINE BASE URL MAPPINF,HERE STUDENT IS COMMON FOR ALL SO ,WE CAN REMOVE STUDENT IN ALL RES API MAPPING 
 @RestController
+//@RequestMapping("/student1")
 public class StudentResponseEntityController {
 
     //to manipulate the http response for rest api
